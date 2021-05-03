@@ -7,11 +7,11 @@ describe('ComplexOperation - Unit Tests', () => {
             expect(complexOperations.checkEmail('lucascaniggia@gmail.com')).toStrictEqual('The email is valid');
         });
 
-        it('Must be an string ', () => {
-            expect(complexOperations.checkEmail(abc123)).toStrictEqual('The email should be an string');
+        it('Must be a string ', () => {
+            expect(complexOperations.checkEmail(1234)).toStrictEqual('The email should be an string');
         });
 
-        it('Must be a valid', () => {
+        it('Must be valid', () => {
             expect(complexOperations.checkEmail('Lucas Caniggia')).toStrictEqual('The email is invalid');
         });
 
@@ -19,15 +19,15 @@ describe('ComplexOperation - Unit Tests', () => {
 
     describe('CalculateArea', () => {
         it('Square test for calculateArea', () => {
-            expect(complexOperations.calculateArea('square')).toBe(60);
+            expect(complexOperations.calculateArea('square')).toBe(100);
         });
 
         it('Rectangle test for calculateArea', () => {
-            expect(complexOperations.calculateArea('rectangle')).toBe(60);
+            expect(complexOperations.calculateArea('rectangle')).toBe(100);
         });
 
         it('Triangle test for calculateArea', () => {
-            expect(complexOperations.calculateArea('triangle')).toBe(60);
+            expect(complexOperations.calculateArea('triangle')).toBe(100);
         });
 
         it('Circle test for calculateArea', () => {
@@ -45,29 +45,29 @@ describe('ComplexOperation - Unit Tests', () => {
 
     describe('SumGratherThan', () => {
         it('Sum grather than', () => {
-            expect(complexOperations.sumGratherThan(0, 0, 5)).toBe(`${100} is grather than ${5}`);
+            expect(complexOperations.sumGratherThan(0, 0, 5)).toBe(`${200} is grather than ${5}`);
         });
 
         it('Sum less than', () => {
-            expect(complexOperations.sumGratherThan(0, 0, 300)).toBe(`${100} is less or equal than ${300}`);
+            expect(complexOperations.sumGratherThan(0, 0, 500)).toBe(`${200} is less than ${500}`);
         });
 
         it('Must be a number', () => {
-            expect(complexOperations.sumGratherThan('one', 'eight', 'yellow')).toBe('The params should be numbers');
+            expect(complexOperations.sumGratherThan('one', 'eight', 'Hi')).toBe('The params should be numbers');
         });
     });
 
     describe('IntersectionBetweenArrays', () => {
         it('IntersectionBetweenArrays not matching', () => {
-            expect(complexOperations.intersectionBetweenArrays(['water', 'burger', 'pizza'], ['beer'])).toEqual(['Music']);
+            expect(complexOperations.intersectionBetweenArrays(['water', 'burger', 'pizza'], ['beer'])).toEqual(['Piano']);
         });
 
         it('IntersectionBetweenArrays matching', () => {
-            expect(complexOperations.intersectionBetweenArrays(['water', 'burger', 'pizza'], ['pizza'])).toEqual(['Music']);
+            expect(complexOperations.intersectionBetweenArrays(['water', 'burger', 'pizza'], ['pizza'])).toEqual(['Piano']);
         });
 
         it('Elements must be arrays', () => {
-            expect(complexOperations.intersectionBetweenArrays('hello', 5)).toEqual(['Music']);
+            expect(complexOperations.intersectionBetweenArrays('hello', 5)).toEqual(['Piano']);
         });
     });
 

@@ -51,7 +51,7 @@ export const calculateArea = (figure, number1, number2 = 0) => {
   if (!isNumber(number1) || !isNumber(number2)) {
     return 'number1 and number2 should be numbers';
   }
-  switch(figure.toLowerCase()) {
+  switch (figure.toLowerCase()) {
     case 'rectangle':
     case 'square':
       return multip(number1, number2);
