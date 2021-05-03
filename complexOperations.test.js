@@ -8,7 +8,7 @@ describe('complexOperation - Unit Tests', () => {
     });
 
     it('second test for checkEmail', () => {
-      expect(complexOperations.checkEmail(23)).toStrictEqual('The email should be an string');
+      expect(complexOperations.checkEmail(23)).toStrictEqual('The email should be a string');
     });
 
     it('third test for checkEmail', () => {
@@ -16,7 +16,7 @@ describe('complexOperation - Unit Tests', () => {
     });
 
     it('fourth -undefined- test for checkEmail', () => {
-      expect(complexOperations.checkEmail(undefined)).toStrictEqual('The email should be an string');
+      expect(complexOperations.checkEmail(undefined)).toStrictEqual('The email should be a string');
     });
   });
 
