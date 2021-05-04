@@ -140,4 +140,106 @@ describe('Mocked complexOperation', () => {
             expect('isArray').toBeCalled;
         });
     });
+
+    describe('sortArrayOfObjectsByKey', () => {
+        beforeEach(() => {
+            jest.restoreAllMocks();
+        })
+        it('first param should be an array', () => {
+            jest.spyOn(basicOperations, 'isArray').mockReturnValue(false);
+            expect(complexOperations.sortArrayOfObjectsByKey('1', 'LucasCaniggia')).toBe('The first param should be an array')
+            expect('isArray').toBeCalled;
+        });
+
+        it('second param is not a string', () => {
+            jest.spyOn(basicOperations, 'isArray').mockReturnValue(true);
+            jest.spyOn(basicOperations, 'isString').mockReturnValue(false);
+            expect(complexOperations.sortArrayOfObjectsByKey([1, 3, 5, 7], (222))).toBe('The second param should be an string')
+            expect('isArray').toBeCalled;
+            expect('isString').toBeCalled;
+        });
+
+        it('sorting by name', () => {
+            jest.spyOn(basicOperations, 'isArray').mockReturnValue(false);
+            jest.spyOn(basicOperations, 'isString').mockReturnValue(false);
+            let name = ['Lucas', 'Conrado', 'Martina'];
+            let age = 'they are in their twenties';
+            expect(complexOperations.sortArrayOfObjectsByKey([name], age)).toBe('The first param should be an array')
+        });
+
+        it('sorting by age', () => {
+            jest.spyOn(basicOperations, 'isArray').mockReturnValue(true);
+            jest.spyOn(basicOperations, 'isString').mockReturnValue(true);
+            jest.spyOn(basicOperations, 'arrayElementsAreObjectWithKey').mockReturnValue(true);
+            jest.spyOn(basicOperations, 'sortArrayByKey').mockReturnValue([{ name: 'Lucas', age: '32' }]);
+            expect(complexOperations.sortArrayOfObjectsByKey([{ name: 'Martina', age: '23' }, { name: 'Lucas', age: '32' }], 'age')).toEqual([{ name: 'Lucas', age: '32' }])
+        });
+
+        it('sorting by age mocked-up to false, when true', () => {
+            jest.spyOn(basicOperations, 'isArray').mockReturnValue(false);
+            jest.spyOn(basicOperations, 'isString').mockReturnValue(false);
+            expect(complexOperations.sortArrayOfObjectsByKey([{ name: 'Martina', age: '23' }], 'age')).toEqual('The first param should be an array')
+        });
+
+        it('elements with no key property', () => {
+            jest.spyOn(basicOperations, 'isArray').mockReturnValue(true);
+            jest.spyOn(basicOperations, 'isString').mockReturnValue(true);
+            jest.spyOn(basicOperations, 'arrayElementsAreObjectWithKey').mockReturnValue(false);
+            expect(complexOperations.sortArrayOfObjectsByKey([{ nationality: 'Argentinian' }, { nationality: 'Brazilian' }, { nationality: '' }], 'age')).toBe('Some elements in the array does not have the ${key} property')
+        });
+    });
+
+    describe('numberOfOddAndEvenNumbers', () => {
+        beforeEach(() => {
+            jest.restoreAllMocks();
+        })
+        it('not a array', () => {
+            jest.spyOn(basicOperations, 'isArray').mockReturnValue(false);
+            expect(complexOperations.numberOfOddAndEvenNumbers('8839')).toBe('The param should be an array')
+        });
+
+        it('the array should only contain numbers', () => {
+            jest.spyOn(basicOperations, 'isArray').mockReturnValue(true);
+            jest.spyOn(basicOperations, 'isNumber').mockReturnValue(false);
+            expect(complexOperations.numberOfOddAndEvenNumbers(['a,b,c,d'])).toBe('The array should have only numbers')
+        });
+
+        it('the array should only contain numbers', () => {
+            jest.spyOn(basicOperations, 'isArray').mockReturnValue(true);
+            jest.spyOn(basicOperations, 'isNumber').mockReturnValue(false);
+            expect(complexOperations.numberOfOddAndEvenNumbers(['a,b,c,d'])).toStrictEqual('The array should have only numbers')
+        });
+
+        it('even numbers array', () => {
+            jest.spyOn(basicOperations, 'isArray').mockReturnValue(true);
+            jest.spyOn(basicOperations, 'isNumber').mockReturnValue(true);
+            expect(complexOperations.numberOfOddAndEvenNumbers([2, 4, 8, 10])).toEqual({ even: 4, odd: 0 });
+        });
+
+        it('odd numbers array', () => {
+            jest.spyOn(basicOperations, 'isArray').mockReturnValue(true);
+            jest.spyOn(basicOperations, 'isNumber').mockReturnValue(true);
+            expect(complexOperations.numberOfOddAndEvenNumbers([1, 3, 5, 7, 9])).toEqual({ even: 0, odd: 5 });
+        });
+
+        it('odd and even numbers array', () => {
+            jest.spyOn(basicOperations, 'isArray').mockReturnValue(true);
+            jest.spyOn(basicOperations, 'isNumber').mockReturnValue(true);
+            expect(complexOperations.numberOfOddAndEvenNumbers([2, 4, 6, 7])).toEqual({ even: 3, odd: 1 });
+        });
+
+        it('odd numbers array mocked-up to return false', () => {
+            jest.spyOn(basicOperations, 'isArray').mockReturnValue(false);
+            jest.spyOn(basicOperations, 'isNumber').mockReturnValue(false);
+            expect(complexOperations.numberOfOddAndEvenNumbers([1, 3, 5, 7, 9])).toEqual('The param should be an array');
+        });
+
+        it('odd numbers array fully mocked-up', () => {
+            jest.spyOn(basicOperations, 'isArray').mockReturnValue(true);
+            jest.spyOn(basicOperations, 'isNumber').mockReturnValue(true);
+            jest.spyOn(basicOperations, 'getOddNumbersFromArray').mockReturnValue([1, 3]);
+            jest.spyOn(basicOperations, 'getEvenNumbersFromArray').mockReturnValue([2, 4]);
+            expect(complexOperations.numberOfOddAndEvenNumbers([1, 3, 5, 7, 9])).toEqual({ even: 2, odd: 2 });
+        });
+    });
 });
