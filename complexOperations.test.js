@@ -38,21 +38,21 @@ describe('complexOperation - Unit Tests', () => {
     });
   });
 
-  describe('sumGratherThan', () => {
-    it('first test for sumGratherThan - letters', () => {
-      expect(complexOperations.sumGratherThan('a,b,c,d')).toBe('The params should be numbers')
+  describe('sumGreaterThan', () => {
+    it('first test for sumGreaterThan - letters', () => {
+      expect(complexOperations.sumGreaterThan('a,b,c,d')).toBe('The params should be numbers')
     });
 
     it('second test - number1=undefined, plus number2 and number3', () => {
-      expect(complexOperations.sumGratherThan('undefined', 4, 5)).toBe('The params should be numbers')
+      expect(complexOperations.sumGreaterThan('undefined', 4, 5)).toBe('The params should be numbers')
     });
 
     it('third test - number1 plus number2 = 50, and greater than number3 ', () => {
-      expect(complexOperations.sumGratherThan(25, 25, 15)).toBe('50 is grather than 15')
+      expect(complexOperations.sumGreaterThan(25, 25, 15)).toBe('50 is greater than 15')
     });
 
     it('fourth test - number1 plus number2 = 50, and lower than number3 ', () => {
-      expect(complexOperations.sumGratherThan(25, 25, 60)).toBe('50 is less than 60')
+      expect(complexOperations.sumGreaterThan(25, 25, 60)).toBe('50 is less than 60')
     });
   });
 

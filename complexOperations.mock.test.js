@@ -78,34 +78,66 @@ describe('Mocked complexOperation', () => {
         });
     });
 
-    describe('sumGratherThan', () => {
+    describe('sumGreaterThan', () => {
         beforeEach(() => {
             jest.restoreAllMocks();
         })
         it('Letters for params', () => {
             jest.spyOn(basicOperations, 'isNumber').mockReturnValue(false);
-            expect(complexOperations.sumGratherThan('a,b,c')).toBe('The params should be numbers')
+            expect(complexOperations.sumGreaterThan('a,b,c')).toBe('The params should be numbers')
             expect('isNumber').toBeCalled;
         });
 
         it('undefined value for number1 + number2 and number3', () => {
             jest.spyOn(basicOperations, 'isNumber').mockReturnValue(false);
-            expect(complexOperations.sumGratherThan('undefined', 2, 4)).toBe('The params should be numbers')
+            expect(complexOperations.sumGreaterThan('undefined', 2, 4)).toBe('The params should be numbers')
             expect('isNumber').toBeCalled;
         });
 
         it('number1 + number2 should be equal to 75 and greater than number3, mocked-up to 100 ', () => {
             jest.spyOn(basicOperations, 'isNumber').mockReturnValue(true);
             jest.spyOn(basicOperations, 'sum').mockReturnValue(100);
-            expect(complexOperations.sumGratherThan(50, 25, 20)).toBe('100 is grather than 20')
+            expect(complexOperations.sumGreaterThan(50, 25, 20)).toBe('100 is greater than 20')
             expect('isNumber').toBeCalled;
         });
 
         it('number1 + number2 should be equal to 75 and lower than number3, mocked-up to 100 ', () => {
             jest.spyOn(basicOperations, 'isNumber').mockReturnValue(true);
             jest.spyOn(basicOperations, 'sum').mockReturnValue(100);
-            expect(complexOperations.sumGratherThan(50, 25, 200)).toBe('100 is less than 200')
+            expect(complexOperations.sumGreaterThan(50, 25, 200)).toBe('100 is less than 200')
             expect('isNumber').toBeCalled;
+        });
+    });
+
+    describe('intersectionBetweenArrays', () => {
+        beforeEach(() => {
+            jest.restoreAllMocks();
+        })
+        it('giving a valid instersection array, mocked-up to return 15', () => {
+            jest.spyOn(basicOperations, 'isArray').mockReturnValue(true);
+            jest.spyOn(basicOperations, 'arrayIntersection').mockReturnValue(15);
+            expect(complexOperations.intersectionBetweenArrays([1, 2, 4], [2, 3, 5, 6])).toEqual(15)
+            expect('isArray').toBeCalled;
+        });
+
+        it('not providing a valid param as an array', () => {
+            jest.spyOn(basicOperations, 'isArray').mockReturnValue(false);
+            expect(complexOperations.intersectionBetweenArrays('15, Radium')).toBe('The params should be arrays')
+            expect('isArray').toBeCalled;
+        });
+
+        it('providing an empty intersection array', () => {
+            jest.spyOn(basicOperations, 'isArray').mockReturnValue(true);
+            jest.spyOn(basicOperations, 'arrayIntersection').mockReturnValue(false);
+            expect(complexOperations.intersectionBetweenArrays([], [])).toStrictEqual(false)
+            expect('isArray').toBeCalled;
+        });
+
+        it('undefined values', () => {
+            jest.spyOn(basicOperations, 'isArray').mockReturnValue(true);
+            jest.spyOn(basicOperations, 'arrayIntersection').mockReturnValue('There are not matching elements');
+            expect(complexOperations.intersectionBetweenArrays(['Integration'], [undefined])).toBe('There are not matching elements')
+            expect('isArray').toBeCalled;
         });
     });
 });

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1620085800083" clover="3.2.0">
-  <project timestamp="1620085800084" name="All files">
+<coverage generated="1620136161892" clover="3.2.0">
+  <project timestamp="1620136161892" name="All files">
     <metrics statements="82" coveredstatements="80" conditionals="49" coveredconditionals="47" methods="25" coveredmethods="25" elements="156" coveredelements="152" complexity="0" loc="82" ncloc="82" packages="1" files="2" classes="2"/>
     <file name="basicOperations.js" path="/Users/mac/Desktop/Radium Rocket/Semana 13 - Integration Tests/basicOperations.js">
       <metrics statements="35" coveredstatements="34" conditionals="4" coveredconditionals="3" methods="19" coveredmethods="19"/>
