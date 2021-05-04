@@ -77,4 +77,35 @@ describe('Mocked complexOperation', () => {
                 expect(complexOperations.calculateArea('${figure}', 2, 3)).toBe('${figure} is not supported')
         });
     });
+
+    describe('sumGratherThan', () => {
+        beforeEach(() => {
+            jest.restoreAllMocks();
+        })
+        it('Letters for params', () => {
+            jest.spyOn(basicOperations, 'isNumber').mockReturnValue(false);
+            expect(complexOperations.sumGratherThan('a,b,c')).toBe('The params should be numbers')
+            expect('isNumber').toBeCalled;
+        });
+
+        it('undefined value for number1 + number2 and number3', () => {
+            jest.spyOn(basicOperations, 'isNumber').mockReturnValue(false);
+            expect(complexOperations.sumGratherThan('undefined', 2, 4)).toBe('The params should be numbers')
+            expect('isNumber').toBeCalled;
+        });
+
+        it('number1 + number2 should be equal to 75 and greater than number3, mocked-up to 100 ', () => {
+            jest.spyOn(basicOperations, 'isNumber').mockReturnValue(true);
+            jest.spyOn(basicOperations, 'sum').mockReturnValue(100);
+            expect(complexOperations.sumGratherThan(50, 25, 20)).toBe('100 is grather than 20')
+            expect('isNumber').toBeCalled;
+        });
+
+        it('number1 + number2 should be equal to 75 and lower than number3, mocked-up to 100 ', () => {
+            jest.spyOn(basicOperations, 'isNumber').mockReturnValue(true);
+            jest.spyOn(basicOperations, 'sum').mockReturnValue(100);
+            expect(complexOperations.sumGratherThan(50, 25, 200)).toBe('100 is less than 200')
+            expect('isNumber').toBeCalled;
+        });
+    });
 });
