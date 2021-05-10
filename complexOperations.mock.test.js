@@ -70,11 +70,11 @@ describe('Mocked complexOperation', () => {
 
         it('testing a non-supported figure', () => {
             jest.spyOn(basicOperations, 'isSupportedFigure').mockReturnValue(false);
-            expect(complexOperations.calculateArea('prism')).toBe('${figure} is not supported'),
-                expect(complexOperations.calculateArea('prism', 2, 3)).toBe('${figure} is not supported'),
-                expect(complexOperations.calculateArea('', 5, 3)).toBe('${figure} is not supported'),
-                expect(complexOperations.calculateArea('undefined')).toBe('${figure} is not supported'),
-                expect(complexOperations.calculateArea('${figure}', 2, 3)).toBe('${figure} is not supported')
+            expect(complexOperations.calculateArea('prism')).toBe(`prism is not supported`),
+                expect(complexOperations.calculateArea('prism', 2, 3)).toBe(`prism is not supported`),
+                expect(complexOperations.calculateArea('', 5, 3)).toBe(` is not supported`),
+                expect(complexOperations.calculateArea('undefined')).toBe(`undefined is not supported`)
+            // expect(complexOperations.calculateArea(`${figure}`, 2, 3)).toBe(`${figure} is not supported`) - check later
         });
     });
 
@@ -185,7 +185,7 @@ describe('Mocked complexOperation', () => {
             jest.spyOn(basicOperations, 'isArray').mockReturnValue(true);
             jest.spyOn(basicOperations, 'isString').mockReturnValue(true);
             jest.spyOn(basicOperations, 'arrayElementsAreObjectWithKey').mockReturnValue(false);
-            expect(complexOperations.sortArrayOfObjectsByKey([{ nationality: 'Argentinian' }, { nationality: 'Brazilian' }, { nationality: '' }], 'age')).toBe('Some elements in the array does not have the ${key} property')
+            expect(complexOperations.sortArrayOfObjectsByKey([{ nationality: 'Argentinian' }, { nationality: 'Brazilian' }, { nationality: '' }], 'age')).toBe(`Some elements in the array does not have the age property`) // check same as 'figure'
         });
     });
 

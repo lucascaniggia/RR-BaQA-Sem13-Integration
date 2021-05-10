@@ -62,7 +62,7 @@ export const calculateArea = (figure, number1, number2 = 0) => {
       const radio = number1;
       return Math.PI * exponent(radio, 2);
     default:
-      return `${figure}`, ' is not supported';
+      return `${figure} is not supported`;
   }
 }
 
